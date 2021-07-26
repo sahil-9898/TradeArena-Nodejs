@@ -1,0 +1,19 @@
+{
+  "name": "trade-arena-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sahil-9898/Trade-Arena_Nodejs.git"
+  },
+  "author": "Sahil Tiwari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sahil-9898/Trade-Arena_Nodejs/issues"
+  },
+  "homepage": "https://github.com/sahil-9898/Trade-Arena_Nodejs#readme"
+}
