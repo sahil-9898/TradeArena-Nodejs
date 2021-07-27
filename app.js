@@ -8,6 +8,7 @@ const userDb = require("./config/mongoose");
 const MongoStore = require("connect-mongo");
 const session = require("express-session");
 const passportLocal = require("./config/passportLocalStrategy");
+const passportGoogle = require("./config/passportGoogleStrategy");
 
 app.use(cors());
 app.use(urlencoded({ extended: true }));
