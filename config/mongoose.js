@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-require("dotenv/config");
 
 const userDb = mongoose
   .connect(process.env.USER_DB, {
@@ -10,9 +9,5 @@ const userDb = mongoose
     console.log("mongoDb connected");
     return mongoose.connection.getClient();
   });
-// .then((connection) => {
-//   console.log("mongoDb connected");
-//   return connection.connection.getClient();
-// });
 
 module.exports = userDb;
