@@ -30,6 +30,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.setAuthenticatedUser);
 app.use("/", require("./routers/index"));
 
 app.listen(process.env.PORT || 3000, () => {

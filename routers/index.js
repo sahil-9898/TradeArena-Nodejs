@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport");
 
-router.get("/", (req, res) => {
+router.get("/", passport.checkAuthenticated, (req, res) => {
   res.render("index.ejs");
 });
-router.use("/users", require("./users"));
+router.use("/", require("./users"));
 
 module.exports = router;
