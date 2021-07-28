@@ -49,6 +49,10 @@ module.exports.createUser = (req, res) => {
   });
 };
 
+module.exports.createSession = (req, res) => {
+  res.redirect("/");
+};
+
 module.exports.logout = (req, res) => {
   req.logOut();
   req.session.destroy();

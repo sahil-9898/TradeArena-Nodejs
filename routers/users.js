@@ -13,21 +13,19 @@ router.get("/signIn", userController.signIn);
 router.post(
   "/signIn",
   passport.authenticate("local", { failureRedirect: "/login" }),
-  (req, res) => {
-    res.redirect("/");
-  }
+  userController.createSession
 );
 
 router.get(
   "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
+  passport.authenticate("google", {
+    scope: ["email", "profile"],
+  })
 );
 router.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
-  (req, res) => {
-    res.redirect("/");
-  }
+  userController.createSession
 );
 
 router.get("/logout", userController.logout);
