@@ -1,5 +1,6 @@
 const express = require("express");
 const passport = require("passport");
+const argon2 = require("argon2");
 const User = require("../models/User");
 
 module.exports.signUp = (req, res) => {
@@ -23,7 +24,7 @@ module.exports.createUser = (req, res) => {
     console.log("Password not matching");
     return;
   }
-  User.findOne({ email: req.body.email }, (err, user) => {
+  User.findOne({ email: req.body.email }, async (err, user) => {
     if (err) {
       console.log("error in finding user");
       return;
@@ -31,14 +32,21 @@ module.exports.createUser = (req, res) => {
       console.log("user already exists");
       return;
     }
+    try {
+      const hash = await argon2.hash(password);
+    } catch (err) {
+      console.log("error while hashing password");
+      return;
+    }
     User.create(
       {
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
+        password: hash,
       },
       (err, user) => {
         if (err) {
+          console.log(err);
           console.log("cannot create user");
         } else {
           console.log("user created");

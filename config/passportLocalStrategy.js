@@ -1,5 +1,6 @@
 const passport = require("passport");
 const localStrategy = require("passport-local");
+const argon2 = require("argon2");
 
 const User = require("../models/User");
 
@@ -10,14 +11,23 @@ passport.use(
       passReqToCallback: true,
     },
     (req, email, password, done) => {
-      User.findOne({ email: email }, (err, user) => {
+      User.findOne({ email: email }, async (err, user) => {
         if (err) {
           return done(err);
         }
-        if (!user || user.password != password) {
+        if (!user) {
           return done(null, false);
         }
-        return done(null, user);
+        try {
+          if (await argon2.verify(user.password, password)) {
+            return done(null, user);
+          } else {
+            return done(null, false);
+          }
+        } catch (err) {
+          console.log("error while verifying hash password");
+          return done(null, false);
+        }
       });
     }
   )
