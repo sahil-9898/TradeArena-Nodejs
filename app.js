@@ -13,6 +13,7 @@ const passportGoogle = require("./config/passportGoogleStrategy");
 app.use(cors());
 app.use(urlencoded({ extended: true }));
 app.use(json());
+app.use(express.static("public"));
 
 app.use(
   session({
