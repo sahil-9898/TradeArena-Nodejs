@@ -33,7 +33,7 @@ module.exports.createUser = (req, res) => {
       return;
     }
     try {
-      const hash = await argon2.hash(password);
+      hash = await argon2.hash(req.body.password);
     } catch (err) {
       console.log("error while hashing password");
       return;
